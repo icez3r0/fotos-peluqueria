@@ -1,16 +1,37 @@
-$(document).ready(function(){
-  
-    var interval = window.setInterval(rotateSlides, 3000)
-    
-    function rotateSlides(){
-      var $firstSlide = $('#carousel').find('div:first');
-      var width = $firstSlide.width();
-      
-      $firstSlide.animate({marginLeft: -width}, 1000, function(){
-        var $lastSlide = $('#carousel').find('div:last')
-        $lastSlide.after($firstSlide);
-        $firstSlide.css({marginLeft: 0})
-      })
+const carousel = document.querySelector(".carousel");
+const slides = document.querySelectorAll(".carousel-slide");
+let currentIndex = 0;
+
+function showSlide(index) {
+    if (index < 0) {
+        currentIndex = slides.length - 1;
+    } else if (index >= slides.length) {
+        currentIndex = 0;
     }
-  
-  })
+
+    carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+// Next and previous buttons (optional)
+const nextButton = document.getElementById("next");
+const prevButton = document.getElementById("prev");
+
+if (nextButton && prevButton) {
+    nextButton.addEventListener("click", () => {
+        currentIndex++;
+        showSlide(currentIndex);
+    });
+
+    prevButton.addEventListener("click", () => {
+        currentIndex--;
+        showSlide(currentIndex);
+    });
+}
+
+// Auto-advance the carousel (optional)
+const autoAdvanceInterval = 3000; // Change slide every 3 seconds
+
+setInterval(() => {
+    currentIndex++;
+    showSlide(currentIndex);
+}, autoAdvanceInterval);
