@@ -1,8 +1,9 @@
 /* Add basic styling for the carousel */
 .carousel-container {
-    width: 80%;
-    margin: 0 auto;
     overflow: hidden;
+  white-space: nowrap;
+  width: 100vw;
+  height: 100vh;
 }
 
 .carousel {
@@ -12,6 +13,11 @@
 
 .carousel-slide {
     flex: 0 0 100%;
+    width: 100vw;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    display: inline-block;
 }
 
 img {
